@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micro Project 3 - Kelompok 5D</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #4a5568;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            color: #718096;
+            font-size: 1.2em;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-title {
+            color: #2d3748;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .dataset { background: #48bb78; }
+        .tasks { background: #ed8936; }
+        .calculations { background: #4299e1; }
+        .timeline { background: #9f7aea; }
+        .communication { background: #f56565; }
+
+        .member-card {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 5px solid;
+            transition: all 0.3s ease;
+        }
+
+        .member-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-1 { border-left-color: #e53e3e; }
+        .member-2 { border-left-color: #38b2ac; }
+        .member-3 { border-left-color: #d69e2e; }
+        .member-4 { border-left-color: #9f7aea; }
+        .member-5 { border-left-color: #48bb78; }
+        .member-6 { border-left-color: #ed8936; }
+        .member-7 { border-left-color: #4299e1; }
+
+        .member-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .member-role {
+            font-size: 0.9em;
+            color: #718096;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .task-list {
+            list-style: none;
+        }
+
+        .task-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #4a5568;
+            line-height: 1.5;
+        }
+
+        .task-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: bold;
+        }
+
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .timeline-item {
+            padding: 15px 0;
+            border-left: 3px solid #9f7aea;
+            padding-left: 20px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .timeline-item:before {
+            content: "";
+            position: absolute;
+            left: -8px;
+            top: 20px;
+            width: 15px;
+            height: 15px;
+            background: #9f7aea;
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: #9f7aea;
+            font-size: 1.1em;
+        }
+
+        .timeline-tasks {
+            color: #4a5568;
+            margin-top: 8px;
+        }
+
+        .calculation-example {
+            background: #ebf8ff;
+            border: 1px solid #bee3f8;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .calculation-title {
+            color: #2b6cb0;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #48bb78, #38b2ac);
+            border-radius: 3px;
+            width: 0%;
+            animation: fillProgress 3s ease-in-out;
+        }
+
+        @keyframes fillProgress {
+            to { width: 100%; }
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            margin: 10px 5px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 MICRO PROJECT 3</h1>
+            <p>Kelompok 5D - Machine Learning Implementation</p>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon dataset">📊</span>
+                Dataset Diabetes
+            </h2>
+            <p>Dataset sederhana untuk implementasi Naive Bayes dan KNN:</p>
+            <div class="code-block">Glucose,BloodPressure,Age,Diabetes
+148,72,35,1
+85,66,29,0
+183,64,31,1
+89,66,23,0
+137,40,35,1
+116,74,30,0
+78,50,31,1
+115,70,30,0
+197,70,45,1
+125,96,30,0</div>
+            <button class="btn" onclick="downloadDataset()">📥 Download Dataset</button>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon tasks">👥</span>
+                Pembagian Tugas Tim
+            </h2>
+
+            <div class="member-card member-1">
+                <div class="member-name">1. Zidan (Koordinator)</div>
+                <div class="member-role">Project Manager & Repository Setup</div>
+                <ul class="task-list">
+                    <li>Buat repository GitHub "MicroProject3-Kelompok5D"</li>
+                    <li>Undang semua anggota sebagai collaborator</li>
+                    <li>Buat struktur folder: /data, /src, /results, /docs</li>
+                    <li>Bagikan link repository di grup WhatsApp</li>
+                    <li>Jadwalkan meeting kickoff (30 menit)</li>
+                </ul>
+            </div>
+
+            <div class="member-card member-2">
+                <div class="member-name">2. Arya (Data Preprocessing)</div>
+                <div class="member-role">Data Engineer</div>
+                <ul class="task-list">
+                    <li>Download dan setup dataset diabetes.csv</li>
+                    <li>Buat preprocessing.py dengan fungsi load_data()</li>
+                    <li>Implementasi normalize_data() untuk normalisasi</li>
+                    <li>Buat split_data() untuk train/test split</li>
+                    <li>Simpan hasil sebagai processed_diabetes.csv</li>
+                </ul>
+            </div>
+
+            <div class="member-card member-3">
+                <div class="member-name">3. Fitria (Naive Bayes)</div>
+                <div class="member-role">ML Algorithm Developer</div>
+                <ul class="task-list">
+                    <li>Buat naive_bayes.py di folder /src</li>
+                    <li>Implementasi kelas NaiveBayes dengan metode fit()</li>
+                    <li>Buat metode predict() untuk prediksi</li>
+                    <li>Gunakan rumus Gaussian NB untuk fitur kontinu</li>
+                    <li>Buat contoh perhitungan manual</li>
+                </ul>
+            </div>
+
+            <div class="member-card member-4">
+                <div class="member-name">4. Rasyid (KNN)</div>
+                <div class="member-role">ML Algorithm Developer</div>
+                <ul class="task-list">
+                    <li>Buat knn.py di folder /src</li>
+                    <li>Implementasi kelas KNN dengan metode fit()</li>
+                    <li>Buat predict() dengan k tetangga terdekat</li>
+                    <li>Gunakan Euclidean distance formula</li>
+                    <li>Contoh manual untuk data [150, 70, 35]</li>
+                </ul>
+            </div>
+
+            <div class="member-card member-5">
+                <div class="member-name">5. Mulyana (Evaluasi)</div>
+                <div class="member-role">Performance Analyst</div>
+                <ul class="task-list">
+                    <li>Buat evaluate.py di folder /src</li>
+                    <li>Implementasi metrik accuracy, precision, recall</li>
+                    <li>Hitung f1-score untuk kedua model</li>
+                    <li>Buat confusion matrix</li>
+                    <li>Bandingkan performa NB vs KNN</li>
+                </ul>
+            </div>
+
+            <div class="member-card member-6">
+                <div class="member-name">6. Helsiani (Visualisasi)</div>
+                <div class="member-role">Data Visualization Specialist</div>
+                <ul class="task-list">
+                    <li>Buat visualize.py di folder /src</li>
+                    <li>Plot comparison accuracy NB vs KNN</li>
+                    <li>Buat confusion matrix visualization</li>
+                    <li>Grafik accuracy vs k value untuk KNN</li>
+                    <li>Simpan semua plot sebagai PNG</li>
+                </ul>
+            </div>
+
+            <div class="member-card member-7">
+                <div class="member-name">7. Syaifullah (Laporan)</div>
+                <div class="member-role">Technical Writer</div>
+                <ul class="task-list">
+                    <li>Buat draft laporan di Google Docs</li>
+                    <li>Bagikan dengan semua anggota tim</li>
+                    <li>Kumpulkan hasil dari setiap anggota</li>
+                    <li>Format laporan sesuai template</li>
+                    <li>Konversi ke PDF untuk submission</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon calculations">🧮</span>
+                Contoh Perhitungan Manual
+            </h2>
+
+            <div class="calculation-example">
+                <div class="calculation-title">Naive Bayes Manual</div>
+                <strong>Data:</strong> Glucose=148, BloodPressure=72, Age=35, Diabetes=1
+                <div class="code-block">Langkah:
+1. Hitung prior probability:
+   P(Diabetes=1) = 5/10 = 0.5
+   P(Diabetes=0) = 5/10 = 0.5
+
+2. Hitung likelihood untuk Diabetes=1:
+   P(Glucose=148|1) = (1/√(2π*var_glucose)) * exp(-(148-mean_glucose)²/(2*var_glucose))
+
+3. Kalikan semua likelihood dan prior
+4. Bandingkan probability untuk kelas 0 dan 1</div>
+            </div>
+
+            <div class="calculation-example">
+                <div class="calculation-title">KNN Manual</div>
+                <strong>Data Baru:</strong> [150, 70, 35]
+                <div class="code-block">Hitung Euclidean distance:
+
+Data 1: [148,72,35] → √((150-148)² + (70-72)² + (35-35)²) = √8 = 2.83
+Data 2: [85,66,29] → √((150-85)² + (70-66)² + (35-29)²) = √4277 = 65.4
+
+Ambil 3 data dengan distance terkecil
+Lihat label mayoritas dari 3 data tersebut</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon timeline">⏰</span>
+                Timeline Target
+            </h2>
+
+            <div class="timeline-item">
+                <div class="timeline-date">Hari Ini</div>
+                <div class="timeline-tasks">
+                    • Meeting kickoff (30 menit)<br>
+                    • Setup repository GitHub<br>
+                    • Persiapan dataset
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">Besok</div>
+                <div class="timeline-tasks">
+                    • Selesai preprocessing data<br>
+                    • Mulai implementasi Naive Bayes dan KNN
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2 Hari Lagi</div>
+                <div class="timeline-tasks">
+                    • Selesai implementasi dasar<br>
+                    • Mulai testing dan evaluasi
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">3 Hari Lagi</div>
+                <div class="timeline-tasks">
+                    • Selesai semua implementasi<br>
+                    • Mulai penulisan laporan
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">4 Hari Lagi</div>
+                <div class="timeline-tasks">
+                    • Finalisasi laporan<br>
+                    • Submit project ✨
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon communication">💬</span>
+                Protokol Komunikasi
+            </h2>
+            <ul class="task-list">
+                <li>Update progress setiap hari jam 19.00 di WhatsApp group</li>
+                <li>Tanyakan masalah teknis di grup agar semua bisa membantu</li>
+                <li>Gunakan GitHub untuk version control</li>
+                <li>Simpan semua file di Google Drive folder bersama</li>
+            </ul>
+            
+            <div style="text-align: center; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #48bb78, #38b2ac); border-radius: 10px; color: white;">
+                <h3>🚀 Semua anggota mulai kerjakan tugas sekarang juga!</h3>
+                <p style="margin-top: 10px;">Jika ada yang tidak jelas, tanyakan segera di grup WhatsApp. Good luck! 💪</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadDataset() {
+            const csvContent = `Glucose,BloodPressure,Age,Diabetes
+148,72,35,1
+85,66,29,0
+183,64,31,1
+89,66,23,0
+137,40,35,1
+116,74,30,0
+78,50,31,1
+115,70,30,0
+197,70,45,1
+125,96,30,0`;
+            
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'diabetes.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const memberCards = document.querySelectorAll('.member-card');
+            
+            memberCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.style.animation = 'fadeInUp 0.6s ease-out forwards';
+            });
+        });
+
+        // Add CSS for fade in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
