@@ -1,0 +1,2 @@
+# kelompokQ
+Kecerdasan buatan
