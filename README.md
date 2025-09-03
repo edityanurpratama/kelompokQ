@@ -5,33 +5,33 @@ Kecerdasan buatan
 
 Aplikasi web interaktif untuk analisis dataset diabetes dengan implementasi algoritma Naive Bayes dan K-Nearest Neighbors (KNN) menggunakan vanilla JavaScript.
 
-## 🎯 Fitur Utama
+##  Fitur Utama
 
-### ✨ Analisis Dataset Interaktif
+###  Analisis Dataset Interaktif
 - **Tabel Dinamis**: Sorting, filtering, pencarian global, dan pagination
 - **Upload CSV**: Import dataset kustom dengan validasi schema
 - **Download CSV**: Export data yang sudah difilter
 - **Visualisasi**: Scatterplot interaktif dengan tooltip
 
-### 🤖 Demo Algoritma Machine Learning
+###  Demo Algoritma Machine Learning
 - **Naive Bayes**: Implementasi lengkap dengan perhitungan step-by-step
 - **K-Nearest Neighbors**: Algoritma KNN dengan visualisasi jarak
 - **Penjelasan Interaktif**: Setiap langkah perhitungan ditampilkan secara detail
 
-### 🎨 UI/UX Modern
+###  UI/UX Modern
 - **Progressive Enhancement**: Berfungsi tanpa JavaScript
 - **Dark/Light Mode**: Toggle tema dengan auto-detection `prefers-color-scheme`
 - **Responsive Design**: Mobile-first dengan CSS Grid & Flexbox
 - **Keyboard Shortcuts**: Navigasi cepat dengan hotkeys
 - **PWA Ready**: Service worker untuk offline caching
 
-### ♿ Accessibility & Performance
+###  Accessibility & Performance
 - **WCAG AA Compliant**: Kontras warna, keyboard navigation, ARIA labels
 - **Print-Friendly**: CSS print styles untuk export PDF
 - **Performance Optimized**: Lazy loading, efficient DOM manipulation
 - **Reduced Motion**: Respect `prefers-reduced-motion`
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Deploy ke Hosting Statis
 1. **Upload semua file** ke root directory hosting:
@@ -59,7 +59,7 @@ Aplikasi web interaktif untuk analisis dataset diabetes dengan implementasi algo
    npx http-server
    ```
 
-## 🎮 Cara Menggunakan
+##  Cara Menggunakan
 
 ### Keyboard Shortcuts
 - `D` - Download dataset aktif
@@ -93,7 +93,7 @@ Aplikasi web interaktif untuk analisis dataset diabetes dengan implementasi algo
 - **Progress Sync**: Status tersimpan otomatis di localStorage
 - **Export**: Download progress sebagai JSON/CSV
 
-## 📊 Contoh Input/Output
+##  Contoh Input/Output
 
 ### Input Prediksi:
 ```javascript
@@ -133,7 +133,7 @@ Voting: 3 Diabetes, 2 No Diabetes
 Prediksi: DIABETES (60%)
 ```
 
-## 🗂️ Struktur File
+##  Struktur File
 
 ```
 ├── index.html          # Main HTML dengan semantic structure
@@ -145,7 +145,7 @@ Prediksi: DIABETES (60%)
 └── README.md          # Dokumentasi lengkap
 ```
 
-## 🧪 Testing & Validation
+##  Testing & Validation
 
 ### Built-in Test Suite
 Buka Developer Console dan jalankan:
@@ -217,7 +217,7 @@ const SMOOTHING = 1e-6;        // Naive Bayes smoothing
 const MAX_ROWS_PER_PAGE = 25;  // Pagination size
 ```
 
-## 🏗️ Arsitektur Teknis
+##  Arsitektur Teknis
 
 ### Progressive Enhancement Strategy
 1. **Base Layer**: HTML semantik + CSS dasar
@@ -235,7 +235,7 @@ const MAX_ROWS_PER_PAGE = 25;  // Pagination size
 - **XSS Prevention**: No `innerHTML` dengan user data
 - **CSP Ready**: Content Security Policy compatible
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### PWA Tidak Install
 - Pastikan HTTPS atau localhost
@@ -257,7 +257,7 @@ const MAX_ROWS_PER_PAGE = 25;  // Pagination size
 - Check console untuk error messages
 - Verify dataset quality (no missing values)
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions welcome! Areas yang bisa dikembangkan:
 - Algoritma ML tambahan (SVM, Decision Tree)
@@ -266,7 +266,7 @@ Contributions welcome! Areas yang bisa dikembangkan:
 - Integrasi dengan backend API
 - Mobile app wrapper (Cordova/Capacitor)
 
-## 📝 Changelog
+##  Changelog
 
 ### v1.0.0 (Initial Release)
 - ✅ Complete refactor dari single HTML ke modular structure
@@ -279,10 +279,10 @@ Contributions welcome! Areas yang bisa dikembangkan:
 - ✅ Print-friendly & export-to-PDF
 - ✅ Responsive mobile-first design
 
-## 📄 License
+##  License
 
 MIT License - bebas digunakan untuk proyek personal & komersial.
 
 ---
 
-**Dibuat dengan ❤️ menggunakan Vanilla JS - No frameworks, no dependencies, just pure web standards!**
+**Dibuat secara bertahap menggunakan Vanilla JS - No frameworks, no dependencies, just pure web standards!**
