@@ -3,739 +3,395 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Micro Project 3 - Kelompok 02 5D</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #3498db;
-            --secondary: #2c3e50;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --success: #2ecc71;
-            --warning: #f39c12;
-            --info: #3498db;
-            --danger: #e74c3c;
-            --gray: #95a5a6;
-            --white: #ffffff;
-            --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
-            line-height: 1.6;
-            padding: 0;
-            margin: 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .header {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-        }
-
-        .header:hover {
-            transform: translateY(-5px);
-        }
-
-        .header h1 {
-            color: var(--dark);
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .header p {
-            color: var(--gray);
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: var(--light);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 20px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--success), var(--info));
-            border-radius: 4px;
-            width: 75%;
-            animation: fillProgress 3s ease-in-out;
-        }
-
-        @keyframes fillProgress {
-            from { width: 0%; }
-            to { width: 75%; }
-        }
-
-        .section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-        }
-
-        .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .section-title {
-            color: var(--dark);
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--light);
-        }
-
-        .icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .dataset { background: var(--info); }
-        .tasks { background: var(--warning); }
-        .calculations { background: var(--info); }
-        .timeline { background: var(--secondary); }
-        .communication { background: var(--danger); }
-
-        .member-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .member-card {
-            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-            border-radius: 12px;
-            padding: 20px;
-            border-left: 5px solid;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .member-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .member-1 { border-left-color: #e53e3e; }
-        .member-2 { border-left-color: #38b2ac; }
-        .member-3 { border-left-color: #d69e2e; }
-        .member-4 { border-left-color: #9f7aea; }
-        .member-5 { border-left-color: #48bb78; }
-        .member-6 { border-left-color: #ed8936; }
-        .member-7 { border-left-color: #4299e1; }
-
-        .member-name {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: var(--dark);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .member-role {
-            font-size: 0.9em;
-            color: var(--gray);
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-
-        .task-list {
-            list-style: none;
-        }
-
-        .task-list li {
-            padding: 8px 0;
-            padding-left: 30px;
-            position: relative;
-            color: #4a5568;
-            line-height: 1.5;
-            border-bottom: 1px dashed #e2e8f0;
-        }
-
-        .task-list li:last-child {
-            border-bottom: none;
-        }
-
-        .task-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--success);
-            font-weight: bold;
-            width: 24px;
-            height: 24px;
-            background: rgba(72, 187, 120, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .code-block {
-            background: #1a202c;
-            color: #e2e8f0;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 15px 0;
-            overflow-x: auto;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            line-height: 1.4;
-        }
-
-        .timeline-container {
-            position: relative;
-            padding-left: 30px;
-            margin: 30px 0;
-        }
-
-        .timeline-container::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 4px;
-            background: var(--secondary);
-            border-radius: 2px;
-        }
-
-        .timeline-item {
-            padding: 15px 0;
-            padding-left: 20px;
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-        .timeline-item:before {
-            content: "";
-            position: absolute;
-            left: -33px;
-            top: 20px;
-            width: 15px;
-            height: 15px;
-            background: var(--secondary);
-            border-radius: 50%;
-            z-index: 2;
-        }
-
-        .timeline-date {
-            font-weight: bold;
-            color: var(--secondary);
-            font-size: 1.1em;
-            margin-bottom: 5px;
-        }
-
-        .timeline-tasks {
-            color: #4a5568;
-        }
-
-        .calculation-example {
-            background: #ebf8ff;
-            border: 1px solid #bee3f8;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 15px 0;
-        }
-
-        .calculation-title {
-            color: #2b6cb0;
-            font-weight: bold;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: var(--transition);
-            margin: 10px 5px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-success {
-            background: linear-gradient(135deg, var(--success), #27ae60);
-        }
-
-        .communication-protocol {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .protocol-item {
-            background: var(--light);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .protocol-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .protocol-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .motivation-section {
-            text-align: center;
-            margin-top: 30px;
-            padding: 30px;
-            background: linear-gradient(135deg, var(--success), #27ae60);
-            border-radius: 10px;
-            color: white;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            
-            .header h1 {
-                font-size: 2em;
-                flex-direction: column;
-            }
-            
-            .section {
-                padding: 20px;
-            }
-            
-            .member-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .communication-protocol {
-                grid-template-columns: 1fr;
-            }
-            
-            .section-title {
-                font-size: 1.5em;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header {
-                padding: 20px;
-            }
-            
-            .header h1 {
-                font-size: 1.7em;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-                margin: 5px 0;
-            }
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: white;
-            font-size: 0.9rem;
-        }
-    </style>
+    <meta name="description" content="Implementasi Machine Learning Naive Bayes dan KNN dengan Dataset Diabetes - Kelompok 02 5D">
+    <meta name="keywords" content="machine learning, naive bayes, knn, diabetes, dataset, visualization">
+    <meta name="author" content="Kelompok 02 5D">
+    <meta name="theme-color" content="#2c3e50">
+    
+    <title>Micro Project 3 - ML Implementation | Kelompok 02 5D</title>
+    
+    <!-- External Resources -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🤖</text></svg>">
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1><i class="fas fa-project-diagram"></i> MICRO PROJECT 3</h1>
-            <p>Kelompok 5D - Machine Learning Implementation</p>
-            <div class="progress-bar">
-                <div class="progress-fill"></div>
+    <!-- Skip Navigation -->
+    <a href="#main-content" class="skip-nav">Lewati ke konten utama</a>
+    
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen" aria-hidden="true">
+        <div class="loading-spinner"></div>
+        <p>Memuat...</p>
+    </div>
+
+    <!-- Keyboard Shortcuts Modal -->
+    <div id="shortcuts-modal" class="modal" role="dialog" aria-labelledby="shortcuts-title" aria-hidden="true">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('shortcuts-modal')" aria-label="Tutup">&times;</button>
+            <h2 id="shortcuts-title">Pintasan Keyboard</h2>
+            <div class="shortcuts-grid">
+                <div><kbd>D</kbd> Unduh Dataset</div>
+                <div><kbd>I</kbd> Info Dataset</div>
+                <div><kbd>T</kbd> Toggle Tema</div>
+                <div><kbd>S</kbd> Fokus Pencarian</div>
+                <div><kbd>?</kbd> Bantuan Pintasan</div>
+                <div><kbd>Esc</kbd> Tutup Modal</div>
             </div>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title">
-                <span class="icon dataset"><i class="fas fa-database"></i></span> Dataset Diabetes
-            </h2>
-            <p>Dataset sederhana untuk implementasi Naive Bayes dan KNN:</p>
-            <div class="code-block">
-Glucose,BloodPressure,Age,Diabetes
-148,72,35,1
-85,66,29,0
-183,64,31,1
-89,66,23,0
-137,40,35,1
-116,74,30,0
-78,50,31,1
-115,70,30,0
-197,70,45,1
-125,96,30,0
-            </div>
-            <button class="btn" onclick="downloadDataset()">
-                <i class="fas fa-download"></i> Download Dataset
-            </button>
-            <button class="btn btn-success" onclick="showDatasetInfo()">
-                <i class="fas fa-info-circle"></i> Dataset Info
-            </button>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title">
-                <span class="icon tasks"><i class="fas fa-tasks"></i></span> Pembagian Tugas Tim
-            </h2>
-            <div class="member-grid">
-                <div class="member-card member-1">
-                    <div class="member-name"><i class="fas fa-user"></i> 1. Zidan (Koordinator)</div>
-                    <div class="member-role">Project Manager & Repository Setup</div>
-                    <ul class="task-list">
-                        <li>Buat repository GitHub "MicroProject3-Kelompok5D"</li>
-                        <li>Undang semua anggota sebagai collaborator</li>
-                        <li>Buat struktur folder: /data, /src, /results, /docs</li>
-                        <li>Bagikan link repository di grup WhatsApp</li>
-                        <li>Jadwalkan meeting kickoff (30 menit)</li>
-                    </ul>
-                </div>
-
-                <div class="member-card member-2">
-                    <div class="member-name"><i class="fas fa-user"></i> 2. Arya (Data Preprocessing)</div>
-                    <div class="member-role">Data Engineer</div>
-                    <ul class="task-list">
-                        <li>Download dan setup dataset diabetes.csv</li>
-                        <li>Buat preprocessing.py dengan fungsi load_data()</li>
-                        <li>Implementasi normalize_data() untuk normalisasi</li>
-                        <li>Buat split_data() untuk train/test split</li>
-                        <li>Simpan hasil sebagai processed_diabetes.csv</li>
-                    </ul>
-                </div>
-
-                <div class="member-card member-3">
-                    <div class="member-name"><i class="fas fa-user"></i> 3. Fitria (Naive Bayes)</div>
-                    <div class="member-role">ML Algorithm Developer</div>
-                    <ul class="task-list">
-                        <li>Buat naive_bayes.py di folder /src</li>
-                        <li>Implementasi kelas NaiveBayes dengan metode fit()</li>
-                        <li>Buat metode predict() untuk prediksi</li>
-                        <li>Gunakan rumus Gaussian NB untuk fitur kontinu</li>
-                        <li>Buat contoh perhitungan manual</li>
-                    </ul>
-                </div>
-
-                <div class="member-card member-4">
-                    <div class="member-name"><i class="fas fa-user"></i> 4. Rasyid (KNN)</div>
-                    <div class="member-role">ML Algorithm Developer</div>
-                    <ul class="task-list">
-                        <li>Buat knn.py di folder /src</li>
-                        <li>Implementasi kelas KNN dengan metode fit()</li>
-                        <li>Buat predict() dengan k tetangga terdekat</li>
-                        <li>Gunakan Euclidean distance formula</li>
-                        <li>Contoh manual untuk data [150, 70, 35]</li>
-                    </ul>
-                </div>
-
-                <div class="member-card member-5">
-                    <div class="member-name"><i class="fas fa-user"></i> 5. Mulyana (Evaluasi)</div>
-                    <div class="member-role">Performance Analyst</div>
-                    <ul class="task-list">
-                        <li>Buat evaluate.py di folder /src</li>
-                        <li>Implementasi metrik accuracy, precision, recall</li>
-                        <li>Hitung f1-score untuk kedua model</li>
-                        <li>Buat confusion matrix</li>
-                        <li>Bandingkan performa NB vs KNN</li>
-                    </ul>
-                </div>
-
-                <div class="member-card member-6">
-                    <div class="member-name"><i class="fas fa-user"></i> 6. Helsiani (Visualisasi)</div>
-                    <div class="member-role">Data Visualization Specialist</div>
-                    <ul class="task-list">
-                        <li>Buat visualize.py di folder /src</li>
-                        <li>Plot comparison accuracy NB vs KNN</li>
-                        <li>Buat confusion matrix visualization</li>
-                        <li>Grafik accuracy vs k value untuk KNN</li>
-                        <li>Simpan semua plot sebagai PNG</li>
-                    </ul>
-                </div>
-
-                <div class="member-card member-7">
-                    <div class="member-name"><i class="fas fa-user"></i> 7. Syaifullah (Laporan)</div>
-                    <div class="member-role">Technical Writer</div>
-                    <ul class="task-list">
-                        <li>Buat draft laporan di Google Docs</li>
-                        <li>Bagikan dengan semua anggota tim</li>
-                        <li>Kumpulkan hasil dari setiap anggota</li>
-                        <li>Format laporan sesuai template</li>
-                        <li>Konversi ke PDF untuk submission</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title">
-                <span class="icon calculations"><i class="fas fa-calculator"></i></span> Contoh Perhitungan Manual
-            </h2>
-            <div class="calculation-example">
-                <div class="calculation-title"><i class="fas fa-brain"></i> Naive Bayes Manual</div>
-                <strong>Data:</strong> Glucose=148, BloodPressure=72, Age=35, Diabetes=1
-                <div class="code-block">
-Langkah:
-1. Hitung prior probability:
-   P(Diabetes=1) = 5/10 = 0.5
-   P(Diabetes=0) = 5/10 = 0.5
-
-2. Hitung likelihood untuk Diabetes=1:
-   P(Glucose=148|1) = (1/√(2π*var_glucose)) * exp(-(148-mean_glucose)²/(2*var_glucose))
-
-3. Kalikan semua likelihood dan prior
-
-4. Bandingkan probability untuk kelas 0 dan 1
-                </div>
-            </div>
-
-            <div class="calculation-example">
-                <div class="calculation-title"><i class="fas fa-project-diagram"></i> KNN Manual</div>
-                <strong>Data Baru:</strong> [150, 70, 35]
-                <div class="code-block">
-Hitung Euclidean distance:
-Data 1: [148,72,35] → √((150-148)² + (70-72)² + (35-35)²) = √8 = 2.83
-Data 2: [85,66,29] → √((150-85)² + (70-66)² + (35-29)²) = √4277 = 65.4
-
-Ambil 3 data dengan distance terkecil
-Lihat label mayoritas dari 3 data tersebut
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title">
-                <span class="icon timeline"><i class="fas fa-calendar-alt"></i></span> Timeline Target
-            </h2>
-            <div class="timeline-container">
-                <div class="timeline-item">
-                    <div class="timeline-date">Hari Ini</div>
-                    <div class="timeline-tasks">
-                        • Meeting kickoff (30 menit)<br>
-                        • Setup repository GitHub<br>
-                        • Persiapan dataset
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-date">Besok</div>
-                    <div class="timeline-tasks">
-                        • Selesai preprocessing data<br>
-                        • Mulai implementasi Naive Bayes dan KNN
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-date">2 Hari Lagi</div>
-                    <div class="timeline-tasks">
-                        • Selesai implementasi dasar<br>
-                        • Mulai testing dan evaluasi
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-date">3 Hari Lagi</div>
-                    <div class="timeline-tasks">
-                        • Selesai semua implementasi<br>
-                        • Mulai penulisan laporan
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-date">4 Hari Lagi</div>
-                    <div class="timeline-tasks">
-                        • Finalisasi laporan<br>
-                        • Submit project ✨
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title">
-                <span class="icon communication"><i class="fas fa-comments"></i></span> Protokol Komunikasi
-            </h2>
-            <div class="communication-protocol">
-                <div class="protocol-item">
-                    <div class="protocol-icon"><i class="fab fa-whatsapp"></i></div>
-                    <h3>WhatsApp Group</h3>
-                    <p>Update progress setiap hari jam 19.00</p>
-                </div>
-
-                <div class="protocol-item">
-                    <div class="protocol-icon"><i class="fab fa-github"></i></div>
-                    <h3>GitHub</h3>
-                    <p>Version control dan kolaborasi kode</p>
-                </div>
-
-                <div class="protocol-item">
-                    <div class="protocol-icon"><i class="fab fa-google-drive"></i></div>
-                    <h3>Google Drive</h3>
-                    <p>Penyimpanan dokumen dan laporan</p>
-                </div>
-
-                <div class="protocol-item">
-                    <div class="protocol-icon"><i class="fas fa-video"></i></div>
-                    <h3>Video Meeting</h3>
-                    <p>Meeting rutin untuk sinkronisasi</p>
-                </div>
-            </div>
-
-            <div class="motivation-section">
-                <h3><i class="fas fa-rocket"></i> Semua anggota mulai kerjakan tugas sekarang juga!</h3>
-                <p style="margin-top: 10px;">Jika ada yang tidak jelas, tanyakan segera di grup WhatsApp. Good luck! 💪</p>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p>Micro Project 3 - Kelompok 02 5D © 2023 | Machine Learning Implementation</p>
         </div>
     </div>
 
-    <script>
-        function downloadDataset() {
-            const csvContent = `Glucose,BloodPressure,Age,Diabetes
-148,72,35,1
-85,66,29,0
-183,64,31,1
-89,66,23,0
-137,40,35,1
-116,74,30,0
-78,50,31,1
-115,70,30,0
-197,70,45,1
-125,96,30,0`;
+    <!-- Notification Area -->
+    <div id="notification" class="notification" aria-live="polite" aria-atomic="true"></div>
 
-            const blob = new Blob([csvContent], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'diabetes.csv';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
+    <div class="container">
+        <!-- Header -->
+        <header class="header" role="banner">
+            <div class="header-controls">
+                <button id="theme-toggle" class="btn-icon" aria-label="Toggle tema gelap/terang" title="Toggle Tema (T)">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="shortcuts-btn" class="btn-icon" aria-label="Tampilkan pintasan keyboard" title="Pintasan Keyboard (?)">
+                    <i class="fas fa-keyboard"></i>
+                </button>
+            </div>
             
-            // Show notification
-            alert('Dataset diabetes.csv berhasil diunduh!');
-        }
+            <h1><i class="fas fa-project-diagram"></i> MICRO PROJECT 3</h1>
+            <p class="subtitle">Implementasi Machine Learning - Kelompok 02 5D</p>
+            
+            <div class="progress-container">
+                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <span id="progress-text" class="progress-text">0%</span>
+            </div>
+        </header>
 
-        function showDatasetInfo() {
-            alert('Dataset Diabetes\n\nDataset ini berisi 10 sampel data dengan 3 fitur (Glucose, BloodPressure, Age) dan 1 target (Diabetes).\n\nDigunakan untuk implementasi algoritma Naive Bayes dan KNN.');
-        }
+        <!-- Main Content -->
+        <main id="main-content" role="main">
+            <!-- Dataset Section -->
+            <section class="section" id="dataset-section">
+                <h2 class="section-title">
+                    <i class="fas fa-database"></i>
+                    Dataset Diabetes
+                </h2>
+                
+                <!-- Fallback Content (No JS) -->
+                <noscript>
+                    <div class="no-js-fallback">
+                        <p>Dataset diabetes dengan 4 kolom utama:</p>
+                        <table class="simple-table">
+                            <thead>
+                                <tr>
+                                    <th>Glucose</th>
+                                    <th>BloodPressure</th>
+                                    <th>Age</th>
+                                    <th>Diabetes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>148</td><td>72</td><td>35</td><td>1</td></tr>
+                                <tr><td>85</td><td>66</td><td>29</td><td>0</td></tr>
+                                <tr><td>183</td><td>64</td><td>31</td><td>1</td></tr>
+                                <tr><td>89</td><td>66</td><td>23</td><td>0</td></tr>
+                                <tr><td>137</td><td>40</td><td>35</td><td>1</td></tr>
+                            </tbody>
+                        </table>
+                        <a href="diabetes.csv" class="btn" download="diabetes.csv">
+                            <i class="fas fa-download"></i> Unduh Dataset
+                        </a>
+                    </div>
+                </noscript>
 
-        // Add animation to elements when scrolling
-        document.addEventListener('DOMContentLoaded', function() {
-            const memberCards = document.querySelectorAll('.member-card');
-            memberCards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
-                card.style.animation = 'fadeInUp 0.6s ease-out forwards';
-                card.style.opacity = '0';
+                <!-- Interactive Controls -->
+                <div class="dataset-controls">
+                    <div class="control-group">
+                        <input type="search" id="dataset-search" placeholder="Cari dalam dataset..." 
+                               aria-label="Pencarian dataset" class="search-input">
+                        <button id="clear-search" class="btn-clear" aria-label="Hapus pencarian">&times;</button>
+                    </div>
+                    
+                    <select id="rows-per-page" aria-label="Baris per halaman">
+                        <option value="10">10 baris</option>
+                        <option value="25" selected>25 baris</option>
+                        <option value="50">50 baris</option>
+                        <option value="100">100 baris</option>
+                    </select>
+                </div>
+
+                <!-- Dataset Table -->
+                <div class="table-container">
+                    <table id="dataset-table" class="data-table" role="table">
+                        <thead>
+                            <tr>
+                                <th data-column="glucose" tabindex="0" aria-sort="none">
+                                    Glucose <i class="fas fa-sort"></i>
+                                </th>
+                                <th data-column="bloodpressure" tabindex="0" aria-sort="none">
+                                    BloodPressure <i class="fas fa-sort"></i>
+                                </th>
+                                <th data-column="age" tabindex="0" aria-sort="none">
+                                    Age <i class="fas fa-sort"></i>
+                                </th>
+                                <th data-column="diabetes" tabindex="0" aria-sort="none">
+                                    Diabetes <i class="fas fa-sort"></i>
+                                </th>
+                            </tr>
+                            <tr class="filter-row">
+                                <th>
+                                    <input type="number" placeholder="Min" class="filter-input" data-column="glucose" data-type="min">
+                                    <input type="number" placeholder="Max" class="filter-input" data-column="glucose" data-type="max">
+                                </th>
+                                <th>
+                                    <input type="number" placeholder="Min" class="filter-input" data-column="bloodpressure" data-type="min">
+                                    <input type="number" placeholder="Max" class="filter-input" data-column="bloodpressure" data-type="max">
+                                </th>
+                                <th>
+                                    <input type="number" placeholder="Min" class="filter-input" data-column="age" data-type="min">
+                                    <input type="number" placeholder="Max" class="filter-input" data-column="age" data-type="max">
+                                </th>
+                                <th>
+                                    <select class="filter-input" data-column="diabetes">
+                                        <option value="">Semua</option>
+                                        <option value="0">Tidak Diabetes</option>
+                                        <option value="1">Diabetes</option>
+                                    </select>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="dataset-tbody">
+                            <!-- Data akan dimuat dengan JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination" id="pagination" role="navigation" aria-label="Navigasi halaman dataset">
+                    <!-- Kontrol pagination akan ditambahkan dengan JavaScript -->
+                </div>
+
+                <!-- Dataset Actions -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="downloadDataset()" title="Unduh Dataset (D)">
+                        <i class="fas fa-download"></i> Unduh CSV
+                    </button>
+                    <button class="btn btn-info" onclick="showDatasetInfo()" title="Info Dataset (I)">
+                        <i class="fas fa-info-circle"></i> Info Dataset
+                    </button>
+                    <label for="csv-upload" class="btn btn-success">
+                        <i class="fas fa-upload"></i> Upload CSV
+                        <input type="file" id="csv-upload" accept=".csv" style="display: none;">
+                    </label>
+                    <button class="btn btn-secondary" onclick="exportToPDF()">
+                        <i class="fas fa-file-pdf"></i> Export PDF
+                    </button>
+                </div>
+            </section>
+
+            <!-- Visualization Section -->
+            <section class="section" id="visualization-section">
+                <h2 class="section-title">
+                    <i class="fas fa-chart-scatter"></i>
+                    Visualisasi Data
+                </h2>
+                
+                <div class="viz-controls">
+                    <div class="control-group">
+                        <label for="x-axis">Sumbu X:</label>
+                        <select id="x-axis">
+                            <option value="glucose">Glucose</option>
+                            <option value="bloodpressure">Blood Pressure</option>
+                            <option value="age">Age</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="y-axis">Sumbu Y:</label>
+                        <select id="y-axis">
+                            <option value="age">Age</option>
+                            <option value="glucose">Glucose</option>
+                            <option value="bloodpressure">Blood Pressure</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="scatter-plot" width="800" height="400" 
+                            role="img" aria-label="Scatter plot dataset diabetes"></canvas>
+                    <div id="tooltip" class="tooltip" role="tooltip" aria-hidden="true"></div>
+                </div>
+            </section>
+
+            <!-- Algorithm Demo Section -->
+            <section class="section" id="algorithm-section">
+                <h2 class="section-title">
+                    <i class="fas fa-calculator"></i>
+                    Demo Algoritma Machine Learning
+                </h2>
+                
+                <div class="demo-container">
+                    <div class="demo-inputs">
+                        <h3>Input Data Baru</h3>
+                        
+                        <div class="input-slider">
+                            <label for="demo-glucose">Glucose:</label>
+                            <input type="range" id="demo-glucose" min="50" max="250" value="148">
+                            <span id="glucose-value">148</span>
+                        </div>
+                        
+                        <div class="input-slider">
+                            <label for="demo-bp">Blood Pressure:</label>
+                            <input type="range" id="demo-bp" min="40" max="120" value="72">
+                            <span id="bp-value">72</span>
+                        </div>
+                        
+                        <div class="input-slider">
+                            <label for="demo-age">Age:</label>
+                            <input type="range" id="demo-age" min="20" max="80" value="35">
+                            <span id="age-value">35</span>
+                        </div>
+                        
+                        <div class="algorithm-selector">
+                            <h4>Pilih Algoritma:</h4>
+                            <label class="radio-label">
+                                <input type="radio" name="algorithm" value="nb" checked>
+                                <span>Naive Bayes</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="algorithm" value="knn">
+                                <span>KNN (k = <input type="number" id="k-value" min="1" max="10" value="3">)</span>
+                            </label>
+                        </div>
+                        
+                        <div class="demo-buttons">
+                            <button class="btn btn-primary" onclick="runAlgorithmDemo()">
+                                <i class="fas fa-play"></i> Jalankan Prediksi
+                            </button>
+                            <button class="btn btn-info" onclick="explainAlgorithm()">
+                                <i class="fas fa-question-circle"></i> Penjelasan
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-output">
+                        <h3>Hasil Perhitungan Step-by-Step</h3>
+                        <div id="calculation-steps" class="calculation-display">
+                            <p class="placeholder">Silakan atur input dan klik "Jalankan Prediksi" untuk melihat perhitungan detail.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tasks Section -->
+            <section class="section" id="tasks-section">
+                <h2 class="section-title">
+                    <i class="fas fa-tasks"></i>
+                    Pembagian Tugas Tim
+                </h2>
+                
+                <div class="task-controls">
+                    <button class="btn btn-secondary" onclick="exportTasks()">
+                        <i class="fas fa-download"></i> Export Tasks
+                    </button>
+                    <button class="btn btn-success" onclick="addCustomTask()">
+                        <i class="fas fa-plus"></i> Tambah Tugas
+                    </button>
+                </div>
+                
+                <div class="task-grid" id="task-grid">
+                    <!-- Task board akan dimuat dengan JavaScript -->
+                </div>
+            </section>
+
+            <!-- Timeline Section -->
+            <section class="section" id="timeline-section">
+                <h2 class="section-title">
+                    <i class="fas fa-calendar-alt"></i>
+                    Timeline Target
+                </h2>
+                <div class="timeline" id="timeline">
+                    <!-- Timeline akan dimuat dengan JavaScript -->
+                </div>
+            </section>
+
+            <!-- Communication Section -->
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-comments"></i>
+                    Protokol Komunikasi
+                </h2>
+                
+                <div class="communication-grid">
+                    <div class="comm-item">
+                        <div class="comm-icon whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h3>WhatsApp Group</h3>
+                        <p>Update progress harian jam 19:00</p>
+                    </div>
+
+                    <div class="comm-item">
+                        <div class="comm-icon github">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h3>GitHub</h3>
+                        <p>Version control dan kolaborasi</p>
+                    </div>
+
+                    <div class="comm-item">
+                        <div class="comm-icon drive">
+                            <i class="fab fa-google-drive"></i>
+                        </div>
+                        <h3>Google Drive</h3>
+                        <p>Dokumen dan laporan</p>
+                    </div>
+
+                    <div class="comm-item">
+                        <div class="comm-icon meeting">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>Video Meeting</h3>
+                        <p>Sinkronisasi rutin</p>
+                    </div>
+                </div>
+
+                <div class="motivation">
+                    <h3><i class="fas fa-rocket"></i> Mari mulai bekerja sekarang!</h3>
+                    <p>Jika ada yang tidak jelas, tanyakan di grup WhatsApp. Semangat! 💪</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer" role="contentinfo">
+            <p>&copy; 2023 Micro Project 3 - Kelompok 02 5D</p>
+            <p><small>Progressive Web App • Offline Ready • Accessible Design</small></p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        // Service Worker registration
+        if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        console.log('SW registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('SW registration failed:', error);
+                    });
             });
-
-            // Add CSS for fade in animation
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes fadeInUp {
-                    from {
-                        opacity: 0;
-                        transform: translateY(30px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-
-            // Add intersection observer for scroll animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
-                        entry.target.style.opacity = '1';
-                    }
-                });
-            }, observerOptions);
-
-            // Observe all sections
-            document.querySelectorAll('.section').forEach(section => {
-                observer.observe(section);
-            });
-        });
+        }
     </script>
 </body>
 </html>
